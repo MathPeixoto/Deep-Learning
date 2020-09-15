@@ -33,7 +33,7 @@ vgg = VGG16(input_shape=IMAGE_SIZE + [3], weights='imagenet', include_top=False)
 for layer in vgg.layers:
     layer.trainable = False    
 x = Flatten()(vgg.output)
-output = Dense(units=len(folders), activation='sigmoid')(x)
+output = Dense(units=len(folders), activation='softmax')(x)
 #create a custom model from VGG16
 model = Model(inputs=vgg.input, outputs=output)
 model.summary()
